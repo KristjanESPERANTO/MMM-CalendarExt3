@@ -344,6 +344,15 @@ Module.register("MMM-CalendarExt3", {
       observer.observe(moduleContainer, { childList: true })
     }
 
+    if (notification === "NEW_PAGE") {
+      // MMM-Pages hides/shows modules via display:none, so offsetWidth/scrollWidth are 0 when hidden.
+      // Re-run updated() after a frame so measurements are correct when the page becomes visible.
+      requestAnimationFrame(() => {
+        const content = document.querySelector(`#${this.identifier} .module-content .CX3`)
+        if (content) this.updated(content, this.activeConfig)
+      })
+    }
+
     if (notification === this.notifications.weatherNotification) {
       const convertedPayload = this.notifications.weatherPayload(payload)
       if (
