@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.11.4](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v1.11.3...v1.11.4) (2026-02-22)
+
+
+### Fixed
+
+* re-apply marquee on NEW_PAGE notification from MMM-Pages ([8c0619a](https://github.com/MMRIZE/MMM-CalendarExt3/commit/8c0619a9180fa929e0681ad33a264d1a538347dd))
+
+
+### Documentation
+
+* clarify description of showWeekNumber configuration option ([90eadc7](https://github.com/MMRIZE/MMM-CalendarExt3/commit/90eadc7e8a3bc0a9e5ece888114247ddc72aa773))
+
+
+### Chores
+
+* update devDependencies ([b4243f1](https://github.com/MMRIZE/MMM-CalendarExt3/commit/b4243f1b7ed1f901bc77c6357f818b51f57d5567))
+
 ## [1.11.3](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v1.11.2...v1.11.3) (2026-02-14)
 
 
