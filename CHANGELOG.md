@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.12.3](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v1.12.2...v1.12.3) (2026-04-26)
+
+
+### Fixed
+
+* **closure:** restore closure context in config callbacks ([ac801a5](https://github.com/MMRIZE/MMM-CalendarExt3/commit/ac801a5b95a7a4ef72068221e08540fccf4ddbcc)), closes [#260](https://github.com/MMRIZE/MMM-CalendarExt3/issues/260)
+
 ## [1.12.2](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v1.12.1...v1.12.2) (2026-04-20)
 
 
