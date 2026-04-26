@@ -371,6 +371,13 @@ Module.register("MMM-CalendarExt3", {
     }
 
     this._functionsReady()
+
+    // If the module already rendered (e.g. Chrome opened after initial load),
+    // re-render immediately so transforms/filters are applied without waiting
+    // for the next CALENDAR_EVENTS broadcast (which can be many minutes away).
+    if (this._ready) {
+      this.updateDom(this.activeConfig.animationSpeed)
+    }
   },
 
   notificationReceived(notification, payload, sender) {
