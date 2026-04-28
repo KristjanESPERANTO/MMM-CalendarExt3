@@ -8,7 +8,7 @@ module.exports = NodeHelper.create({
     // when frontend config keeps function callbacks intact again.
     this.functionConfigs = []
     this.variablePreamble = ""
-    this.registrationCount = 0
+    this.identifierFunctions = new Map()
     this.loadFunctionConfigs()
   },
 
@@ -109,14 +109,19 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived(notification, payload) {
     if (notification === "CX3_REGISTER") {
-      // registrationCount maps to the index in functionConfigs because MagicMirror
-      // initializes modules sequentially in config order, so the nth CX3_REGISTER
-      // corresponds to the nth MMM-CalendarExt3 entry in config.modules.
-      const index = this.registrationCount++
+      const { identifier } = payload
+      // On first registration of a given identifier, assign the next functionConfig in order
+      // (MagicMirror initializes modules sequentially, preserving config.modules order).
+      // Subsequent registrations from the same identifier (reconnects, multi-browser) reuse
+      // the cached functions so they always get the correct config.
+      if (!this.identifierFunctions.has(identifier)) {
+        const index = this.identifierFunctions.size
+        this.identifierFunctions.set(identifier, this.functionConfigs[index] || {})
+      }
       this.sendSocketNotification("CX3_FUNCTIONS_RESTORED", {
-        identifier: payload.identifier,
+        identifier,
         variablePreamble: this.variablePreamble,
-        functions: this.functionConfigs[index] || {}
+        functions: this.identifierFunctions.get(identifier)
       })
     }
   }
