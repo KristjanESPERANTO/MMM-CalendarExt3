@@ -8,6 +8,7 @@ const loadModuleDefinition = ({ mmConfig } = {}) => {
 
   global.HTMLElement = class HTMLElement {}
   global.config = mmConfig ?? { language: "en" }
+  global.Log = { warn: () => {}, error: () => {}, log: () => {} }
   global.Module = {
     register: (_name, definition) => {
       registered = definition
@@ -158,4 +159,37 @@ test("getHeader returns explicit header and month fallback", () => {
   const fallbackHeader = instance.getHeader()
   assert.equal(typeof fallbackHeader, "string")
   assert.ok(fallbackHeader.length > 0)
+})
+
+test("getDom returns empty dom when module is not ready (_ready = false)", () => {
+  // Regression test for: MM v2.36.0 calls getDom() before _functionsRestored resolves,
+  // causing draw() to run with closure-less functions from MM's reviver.
+  // Guard: !this._ready must prevent draw() from being called.
+  let drawCalled = false
+
+  const classList = { add: () => {} }
+  const dom = {
+    classList,
+    style: { setProperty: () => {} },
+    innerHTML: ""
+  }
+
+  global.document = {
+    createElement: () => dom
+  }
+
+  const instance = createInstance()
+  instance.activeConfig = instance.regularizeConfig({ ...instance.defaults })
+  instance._ready = false
+  instance.library = { loaded: true }
+  instance.draw = () => {
+    drawCalled = true
+    return dom
+  }
+
+  instance.getDom()
+
+  assert.equal(drawCalled, false, "draw() must not be called before module is ready")
+
+  delete global.document
 })
