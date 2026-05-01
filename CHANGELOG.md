@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v1.12.5...v2.0.0) (2026-05-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires MagicMirror² ≥ 2.36.0
+
+### Chores
+
+* update devDependencies ([a024241](https://github.com/MMRIZE/MMM-CalendarExt3/commit/a02424147f8d43069322e0760897a63936f93214))
+
+
+### Code Refactoring
+
+* remove workaround for MM v2.35.0 function-stripping bug ([925e811](https://github.com/MMRIZE/MMM-CalendarExt3/commit/925e811e6b6e2be8629c4b5689c550ec831216f7)), closes [MagicMirrorOrg/MagicMirror#4106](https://github.com/MagicMirrorOrg/MagicMirror/issues/4106)
+
 ## [1.12.5](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v1.12.4...v1.12.5) (2026-04-28)
 
 
