@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.3](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v2.0.2...v2.0.3) (2026-05-03)
+
+
+### Fixed
+
+* **closure:** add preProcessor to serialized function keys ([bc5ae47](https://github.com/MMRIZE/MMM-CalendarExt3/commit/bc5ae47e811a3c4d70782faaed2e25f4c8c0efeb)), closes [#261](https://github.com/MMRIZE/MMM-CalendarExt3/issues/261)
+* **closure:** guard getDom against early render before functions restored ([d4e3cdd](https://github.com/MMRIZE/MMM-CalendarExt3/commit/d4e3cddab7c57368755e982b7424c114cdfafa81))
+
+
+### Documentation
+
+* **readme:** document rolling-days use case for day mode ([2908b61](https://github.com/MMRIZE/MMM-CalendarExt3/commit/2908b61a7caa8d3d824b06cc04d24618e22c59c3))
+
+
+### Tests
+
+* add contract test for all socketNotificationReceived config keys ([a3cf3a4](https://github.com/MMRIZE/MMM-CalendarExt3/commit/a3cf3a4532e17c99ddcfb42b9121676f191cd3af))
+* add regression test for getDom early-render guard ([7231303](https://github.com/MMRIZE/MMM-CalendarExt3/commit/72313038a6c52eedd8c756195c96a8ecb5d7a7f1))
+
 ## [2.0.2](https://github.com/MMRIZE/MMM-CalendarExt3/compare/v2.0.1...v2.0.2) (2026-05-01)
 
 
