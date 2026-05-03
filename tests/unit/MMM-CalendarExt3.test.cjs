@@ -193,3 +193,36 @@ test("getDom returns empty dom when module is not ready (_ready = false)", () =>
 
   delete global.document
 })
+
+test("socketNotificationReceived restores all known config function keys including preProcessor", () => {
+  // Contract test: every key that node_helper serializes must also be handled on the frontend.
+  // If a key is added to node_helper but missing from configKeys here, the assertion fails.
+  const allConfigKeys = ["preProcessor", "eventTransformer", "eventFilter", "eventSorter", "manipulateDateCell", "customHeader"]
+
+  const moduleDef = loadModuleDefinition()
+  const ctx = {
+    identifier: "TEST_INSTANCE",
+    activeConfig: {},
+    originalConfig: {},
+    notifications: {},
+    _ready: false,
+    _functionsReady: () => {},
+    updateDom: () => {}
+  }
+
+  const functions = {}
+  for (const key of allConfigKeys) {
+    functions[key] = `() => "${key}"`
+  }
+
+  moduleDef.socketNotificationReceived.call(ctx, "CX3_FUNCTIONS_RESTORED", {
+    identifier: "TEST_INSTANCE",
+    variablePreamble: "",
+    functions
+  })
+
+  for (const key of allConfigKeys) {
+    assert.equal(typeof ctx.activeConfig[key], "function", `${key} must be restored in activeConfig`)
+    assert.equal(typeof ctx.originalConfig[key], "function", `${key} must be restored in originalConfig`)
+  }
+})
